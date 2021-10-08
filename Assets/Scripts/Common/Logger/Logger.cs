@@ -68,12 +68,19 @@ public class Logger
 #endif
     }
 
+    static public void LogWarning(string s, params object[] p)
+    {
+#if UNITY_EDITOR || LOGGER_ON
+        Debug.LogWarning((p != null && p.Length > 0 ? string.Format(s, p) : s));
+#else
+#endif
+    }
+
     public static void LogErrorToMainThread(string s, params object[] p)
     {
         string msg = (p != null && p.Length > 0 ? string.Format(s, p) : s);
         LoggerHelper.Instance.LogToMainThread(LoggerHelper.LOG_TYPE.LOG_ERR, msg);
     }
-
 
     static public void LogStackTrace(string str)
     {
