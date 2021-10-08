@@ -111,7 +111,7 @@ namespace Addressable
         public void ReleaseLuas()
         {
             if (luaCaching == null) {
-                Logger.LogError("lua cache is null, can not release!");
+                Logger.LogWarning("lua cache is null, can not release!");
                 return;
             }
             luaAsyncLoader.Dispose();
@@ -217,8 +217,5 @@ namespace Addressable
             OnProcessLuaAsyncLoader();
             OnProcessFBAsyncLoader();
         }
-
-      
-    
     }
 }

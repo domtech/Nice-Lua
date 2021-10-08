@@ -53,6 +53,7 @@ public class AddressableUpdater : MonoBehaviour
         if(checkHandle.Status == AsyncOperationStatus.Succeeded)
         {
             List<string> catalogs = checkHandle.Result;
+            start = DateTime.Now;
             if (catalogs != null && catalogs.Count > 0)
             {
                
@@ -63,7 +64,7 @@ public class AddressableUpdater : MonoBehaviour
                 slider.gameObject.SetActive(true);
 
                
-                start = DateTime.Now;
+                
                 AsyncOperationHandle<List<IResourceLocator>> updateHandle = Addressables.UpdateCatalogs(catalogs, false);
                 yield return updateHandle;
 
@@ -100,11 +101,10 @@ public class AddressableUpdater : MonoBehaviour
                     }
                 }
 
-                Logger.Log(string.Format("UpdateFinish use {0}ms", (DateTime.Now - start).Milliseconds));
-                yield return UpdateFinish();
-
                 Addressables.Release(updateHandle);
             }
+            Logger.Log(string.Format("UpdateFinish use {0}ms", (DateTime.Now - start).Milliseconds));
+            yield return UpdateFinish();
 
             Addressables.Release(checkHandle);
         }

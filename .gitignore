@@ -7,3 +7,9 @@ Recordings/
 Assets/LuaScripts/.idea/
 ServerData/
 
+Assets/.idea
+Assets/Scripts/GameLaunch/.idea
+Assets/Scripts/XLua/.idea
+obj
+Assets/Scripts/Common/UIExtens/.idea
+Logs
